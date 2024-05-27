@@ -57,9 +57,9 @@ def find_structures(df):
     top = 0
     info = None
     for i in range(len(df)):
-        indicators = ["v. ", "S. ", " / ", " ; "]
+        indicators = ["v."]
         indicators = [df["text"].iloc[i].count(indicator) for indicator in indicators]
-        if sum(indicators) > 1:
+        if sum(indicators) > 0:
             top = df.iloc[i]["top_mi"]-5
             info = df.iloc[i]["text"]
             df.drop(i, inplace=True)
@@ -79,7 +79,6 @@ def find_structures(df):
 images = pdf2image.convert_from_path("Frühausgabe.pdf")
 
 articles = {}
-info = None
 iscontinuation = False
 for i, image in enumerate(images, start=1):
     print(f"Processing page {i}")
